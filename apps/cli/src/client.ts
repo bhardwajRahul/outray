@@ -273,6 +273,16 @@ export class OutRayClient {
           this.shouldReconnect = false;
           this.stop();
           process.exit(1);
+        } else if (message.code === "PASSWORD_REQUIRES_PAID") {
+          console.log(chalk.red(`❌ Error: ${message.message}`));
+          console.log(
+            chalk.dim(
+              "Password-protected tunnels are available on paid plans.",
+            ),
+          );
+          this.shouldReconnect = false;
+          this.stop();
+          process.exit(1);
         } else {
           console.log(chalk.red(`❌ Error: ${message.message}`));
         }
